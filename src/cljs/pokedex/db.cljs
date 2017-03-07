@@ -3,6 +3,6 @@
 (def default-db
   {:name "re-frame"
    :search-term ""
-   :pokemon ["charmander"
-             "squirtle"
-             "bulbasaur"]})
+   :pokemon #{"charmander"
+              "squirtle"
+              "bulbasaur"}})
