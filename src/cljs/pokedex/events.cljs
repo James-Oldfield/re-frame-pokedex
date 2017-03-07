@@ -6,3 +6,9 @@
  :initialize-db
  (fn  [_ _]
    db/default-db))
+
+;; Update the existing search value a new value
+(re-frame/reg-event-db
+  :update-search-term
+  (fn [db [_ new-search-term]]
+    (assoc db :search-term new-search-term)))
