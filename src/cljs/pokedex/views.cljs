@@ -1,5 +1,5 @@
 (ns pokedex.views
- (:require [re-frame.core :refer [subscribe dispatch]]))
+  (:require [re-frame.core :refer [subscribe dispatch]]))
 
 ;; Represents the search input DOM node.
 ;; Dispatches the :update-search-term event to update the store's search-term value.
@@ -13,9 +13,10 @@
              :on-change #(dispatch [:update-search-term (-> % .-target .-value)])}]))
 
 (defn matching-pokemon-item
-  [{:keys [name]}]
+  [{:keys [entry_number pokemon_species]}]
   [:li.matching-pokemon__pokemon
-   name])
+   (str "#" entry_number " ")
+   (:name pokemon_species)])
 
 (defn matching-pokemon-wrapper
   [{:keys [matching-pokemon]}]

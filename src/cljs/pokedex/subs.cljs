@@ -25,4 +25,4 @@
   :<- [:search-term]
   (fn [[pokemon search-term] _]
     (filter
-      #(s/includes? (:name %) search-term) pokemon)))
+      #(s/includes? (:name (:pokemon_species %)) search-term) pokemon)))
