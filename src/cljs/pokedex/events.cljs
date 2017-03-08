@@ -34,13 +34,13 @@
     (let [name (:name response)
           index (dec (:entry_number (last (:pokedex_numbers response))))
           description (:flavor_text (nth (:flavor_text_entries response) 1))]
-      (assoc-in db [:pokedex
-                    index
-                    :pokemon_species
-                    :description] description)
-      (assoc db :pokedex-loading? false
-             :pokedex-failed? false
-             :pokedex-open? index))))
+      (let [_db (assoc-in db [:pokedex
+                              index
+                              :pokemon_species
+                              :description] description)]
+        (assoc _db :pokedex-loading? false
+               :pokedex-failed? false
+               :pokedex-open? index)))))
 
 ;; Handle pokemon errors
 (re-frame/reg-event-db
