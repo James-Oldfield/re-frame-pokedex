@@ -47,6 +47,7 @@
     [:div {:class (create-class #{"modal"} true)
            :on-click #(dispatch [:close-modal])
            :style {:display "flex"
+                   :text-align "center"
                    :flex-direction "column"
                    :padding "10%"
                    :background "rgba(12, 12, 12, 0.75)"
