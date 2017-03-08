@@ -1,17 +1,17 @@
 (ns pokedex.subs
-    (:require-macros [reagent.ratom :refer [reaction]])
-    (:require [re-frame.core :as re-frame]
-              [clojure.string :as s]))
+  (:require-macros [reagent.ratom :refer [reaction]])
+  (:require [re-frame.core :as re-frame]
+            [clojure.string :as s]))
 
 (re-frame/reg-sub
- :name
- (fn [db]
-   (:name db)))
+  :name
+  (fn [db]
+    (:name db)))
 
 (re-frame/reg-sub
   :search-term
   (fn [db]
-   (:search-term db)))
+    (:search-term db)))
 
 (re-frame/reg-sub
   :pokemon
