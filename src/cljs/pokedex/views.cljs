@@ -7,7 +7,6 @@
 (defn search-input
   [{:keys [search-term]}]
   (fn []
-    (pr (str "current search term: " @search-term))
     [:div (create-class #{"input-group"})
      [:input {:id "search"
               :value @search-term
@@ -44,7 +43,6 @@
 ;; Component for the top-level matching-pokemon wrapper
 (defn pokemon-modal
   [{:keys [name description]}]
-  (pr "deets --  " name description)
   (fn []
     [:div {:class (create-class #{"modal"} true)
            :on-click #(dispatch [:close-modal])
@@ -72,7 +70,6 @@
        [:hr]
        [search-input
         {:search-term search-term}]
-       (pr "active poke ?? " @active-pokemon)
        (if @active-pokemon
          (let [{name :name
                 description :description} (:pokemon_species @active-pokemon)]

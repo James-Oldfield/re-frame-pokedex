@@ -83,7 +83,6 @@
 (re-frame/reg-event-db
   :handle-pokedex-error
   (fn [db [_ response]]
-    (pr "fail" response)
     (-> db
         (assoc :pokedex-loading? false
                :pokedex-loading-failed? true))))
