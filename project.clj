@@ -3,6 +3,7 @@
                  [org.clojure/clojurescript "1.9.229"]
                  [reagent "0.6.0"]
                  [cljs-ajax "0.5.8"]
+                 [day8.re-frame/http-fx "0.1.3"]
                  [re-frame "0.9.2"]]
 
   :plugins [[lein-cljsbuild "1.1.4"]]
