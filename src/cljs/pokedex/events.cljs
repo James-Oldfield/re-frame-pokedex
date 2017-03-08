@@ -15,6 +15,12 @@
   (fn [db [_ new-search-term]]
     (assoc db :search-term new-search-term)))
 
+;; Close the modal (reset pokemon index)
+(re-frame/reg-event-db
+  :close-modal
+  (fn [db _]
+    (assoc db :pokedex-open? -1)))
+
 ;; declarative GET event for individual pokemon
 (re-frame/reg-event-fx
   :get-pokemon

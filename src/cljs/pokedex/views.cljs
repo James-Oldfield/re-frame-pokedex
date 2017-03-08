@@ -45,6 +45,7 @@
   (pr "deets --  " name description)
   (fn []
     [:div {:class (create-class #{"modal"} true)
+           :on-click #(dispatch [:close-modal])
            :style {:display "flex"
                    :flex-direction "column"
                    :padding "10%"
@@ -73,8 +74,8 @@
        (if @active-pokemon
          (let [{name :name
                 description :description} (:pokemon_species @active-pokemon)]
-          [pokemon-modal {:name name
-                          :description description}])
+           [pokemon-modal {:name name
+                           :description description}])
          nil)
        (if @loading?
          [:p "pokemon loading..."]
