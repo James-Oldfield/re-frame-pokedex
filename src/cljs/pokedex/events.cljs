@@ -4,6 +4,7 @@
             [day8.re-frame.http-fx]  
             [pokedex.db :as db]))
 
+;; initialise the DB with default values
 (re-frame/reg-event-db
   :initialize-db
   (fn  [_ _]
@@ -44,9 +45,10 @@
                               index
                               :pokemon_species
                               :description] description)]
-        (assoc _db :pokedex-loading? false
-                   :pokedex-failed? false
-                   :pokedex-open? index)))))
+        (assoc _db
+               :pokedex-loading? false
+               :pokedex-failed? false
+               :pokedex-open? index)))))
 
 ;; Handle pokemon errors
 (re-frame/reg-event-db

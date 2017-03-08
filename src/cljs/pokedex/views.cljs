@@ -15,6 +15,7 @@
               :placeholder "enter pokemon here..."
               :on-change #(dispatch [:update-search-term (-> % .-target .-value)])}]]))
 
+;; Component for each individual pokemon in the list
 (defn matching-pokemon-item
   [{:keys [entry_number pokemon_species]}]
   (let [name (:name pokemon_species)
@@ -31,7 +32,7 @@
                             "badge-pill"})
       (str "#" entry_number " ")]]))
 
-
+;; Component for the top-level matching-pokemon wrapper
 (defn matching-pokemon-wrapper
   [{:keys [matching-pokemon]}]
   (fn []
@@ -40,6 +41,7 @@
       (into [:ul.list-group]
             (map matching-pokemon-item @matching-pokemon)))))
 
+;; Component for the top-level matching-pokemon wrapper
 (defn pokemon-modal
   [{:keys [name description]}]
   (pr "deets --  " name description)
@@ -57,7 +59,7 @@
      [:h1 name]
      [:p description]]))
 
-
+;; Main top-level react app div to mount to
 (defn main-panel
   []
   (let [search-term (subscribe [:search-term])
