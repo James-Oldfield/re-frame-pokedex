@@ -18,6 +18,11 @@
   (fn [db]
     (:pokemon db)))
 
+(re-frame/reg-sub
+  :pokemon-loading?
+  (fn [db]
+    (:pokemon-loading? db)))
+
 ;; Filter the pokemon set by search-term
 (re-frame/reg-sub
   :matching-pokemon

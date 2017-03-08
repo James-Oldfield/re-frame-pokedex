@@ -38,6 +38,7 @@
 (defn main-panel
   []
   (let [search-term (subscribe [:search-term])
+        loading? (subscribe [:pokemon-loading?])
         matching-pokemon (subscribe [:matching-pokemon])]
     (fn []
       [:div {:class (s/join " " ["container"])}
@@ -45,5 +46,7 @@
        [:hr]
        [search-input
         {:search-term search-term}]
-       [matching-pokemon-wrapper
-        {:matching-pokemon matching-pokemon}]])))
+       (if @loading?
+         [:p "pokemon loading..."]
+         [matching-pokemon-wrapper
+          {:matching-pokemon matching-pokemon}])])))
