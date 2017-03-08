@@ -36,7 +36,6 @@
   :<- [:pokemon]
   :<- [:pokedex-open?]
   (fn [[pokemon pokedex-open?] _]
-    (pr "inside sub  ------------ pokedex-open?  " pokedex-open?)
     (if (> pokedex-open? -1)
       (nth pokemon pokedex-open?)
       false)))

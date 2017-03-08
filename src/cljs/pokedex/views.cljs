@@ -40,10 +40,28 @@
       (into [:ul.list-group]
             (map matching-pokemon-item @matching-pokemon)))))
 
+(defn pokemon-modal
+  [{:keys [name description]}]
+  (pr "deets --  " name description)
+  (fn []
+    [:div {:class (create-class #{"modal"} true)
+           :style {:display "flex"
+                   :flex-direction "column"
+                   :padding "10%"
+                   :background "rgba(12, 12, 12, 0.75)"
+                   :color "white"
+                   :cursor "pointer"
+                   :align-items "center"
+                   :justify-content "center"}}
+     [:h1 name]
+     [:p description]]))
+
+
 (defn main-panel
   []
   (let [search-term (subscribe [:search-term])
         loading? (subscribe [:pokedex-loading?])
+        active-pokemon (subscribe [:active-pokemon])
         matching-pokemon (subscribe [:matching-pokemon])]
     (fn []
       [:div (create-class #{"container"})
@@ -51,6 +69,13 @@
        [:hr]
        [search-input
         {:search-term search-term}]
+       (pr "active poke ?? " @active-pokemon)
+       (if @active-pokemon
+         (let [{name :name
+                description :description} (:pokemon_species @active-pokemon)]
+          [pokemon-modal {:name name
+                          :description description}])
+         nil)
        (if @loading?
          [:p "pokemon loading..."]
          [matching-pokemon-wrapper
