@@ -34,4 +34,4 @@
        [search-input
         {:search-term search-term}]
        [matching-pokemon-wrapper
-        {:matching-pokemon matching-pokemon}]]))) 
+        {:matching-pokemon matching-pokemon}]])))
