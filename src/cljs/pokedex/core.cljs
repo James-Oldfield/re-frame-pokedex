@@ -19,6 +19,6 @@
 
 (defn ^:export init []
   (re-frame/dispatch-sync [:initialize-db])
-  (re-frame/dispatch-sync [:get-pokemon])
+  (re-frame/dispatch-sync [:get-pokedex])
   (dev-setup)
   (mount-root))

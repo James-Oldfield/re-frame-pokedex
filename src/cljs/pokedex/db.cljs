@@ -2,6 +2,6 @@
 
 (def default-db
   {:search-term ""
-   :pokemon-loading?
-   :pokemon-failed?
-   :pokemon #{}})
+   :pokedex-loading? false
+   :pokedex-failed? false
+   :pokedex #{}})

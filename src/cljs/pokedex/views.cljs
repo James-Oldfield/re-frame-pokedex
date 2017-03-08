@@ -38,7 +38,7 @@
 (defn main-panel
   []
   (let [search-term (subscribe [:search-term])
-        loading? (subscribe [:pokemon-loading?])
+        loading? (subscribe [:pokedex-loading?])
         matching-pokemon (subscribe [:matching-pokemon])]
     (fn []
       [:div (create-class #{"container"})
