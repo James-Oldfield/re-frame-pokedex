@@ -23,6 +23,24 @@
   (fn [db]
     (:pokedex-loading? db)))
 
+(re-frame/reg-sub
+  :pokedex-open?
+  (fn [db]
+    (:pokedex-open? db)))
+
+;; QUEUE COMPOSED SUBSCRIPTIONS --------------------------------------
+
+;; Get the current active pokemon
+(re-frame/reg-sub
+  :active-pokemon
+  :<- [:pokemon]
+  :<- [:pokedex-open?]
+  (fn [[pokemon pokedex-open?] _]
+    (pr "inside sub  ------------ pokedex-open?  " pokedex-open?)
+    (if (> pokedex-open? -1)
+      (nth pokemon pokedex-open?)
+      false)))
+
 ;; Filter the pokemon set by search-term
 (re-frame/reg-sub
   :matching-pokemon
