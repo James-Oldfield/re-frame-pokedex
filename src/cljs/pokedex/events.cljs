@@ -19,13 +19,13 @@
 (re-frame/reg-event-fx
   :get-pokemon
   (fn [{db :db} [_ url]]
-   {:db (assoc db :pokedex-loading? true)
-    :http-xhrio {:method :get
-                 :uri url
-                 :timeout 8000
-                 :response-format (ajax/json-response-format {:keywords? true})
-                 :on-success [:handle-pokemon-success]
-                 :on-failure [:handle-pokemon-error]}}))
+    {:db (assoc db :pokedex-loading? true)
+     :http-xhrio {:method :get
+                  :uri url
+                  :timeout 8000
+                  :response-format (ajax/json-response-format {:keywords? true})
+                  :on-success [:handle-pokemon-success]
+                  :on-failure [:handle-pokemon-error]}}))
 
 ;; Handle pokemon success
 (re-frame/reg-event-db
@@ -34,18 +34,18 @@
     (let [name (:name response)
           index (dec (:entry_number (last (:pokedex_numbers response))))
           description (:flavor_text (nth (:flavor_text_entries response) 1))]
-      (assoc db :pokedex-loading? false
-             :pokedex-failed? false)
       (assoc-in db [:pokedex
                     index
                     :pokemon_species
-                    :description] description))))
+                    :description] description)
+      (assoc db :pokedex-loading? false
+             :pokedex-failed? false
+             :pokedex-open? index))))
 
 ;; Handle pokemon errors
 (re-frame/reg-event-db
   :handle-pokemon-error
   (fn [db [_ response]]
-    (pr "fail" response)
     (-> db
         (assoc :pokedex-loading? false
                :pokedex-loading-failed? true))))
