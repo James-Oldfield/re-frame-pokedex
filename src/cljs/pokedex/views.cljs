@@ -30,8 +30,10 @@
 (defn matching-pokemon-wrapper
   [{:keys [matching-pokemon]}]
   (fn []
-    (into [:ul.list-group]
-          (map matching-pokemon-item @matching-pokemon))))
+    (if (empty? @matching-pokemon)
+      [:h2 "none found"]
+      (into [:ul.list-group]
+            (map matching-pokemon-item @matching-pokemon)))))
 
 (defn main-panel
   []
