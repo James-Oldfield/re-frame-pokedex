@@ -39,8 +39,8 @@
                               :pokemon_species
                               :description] description)]
         (assoc _db :pokedex-loading? false
-               :pokedex-failed? false
-               :pokedex-open? index)))))
+                   :pokedex-failed? false
+                   :pokedex-open? index)))))
 
 ;; Handle pokemon errors
 (re-frame/reg-event-db
