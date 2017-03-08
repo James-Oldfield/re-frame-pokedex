@@ -1,10 +1,10 @@
 (ns pokedex.core
-    (:require [reagent.core :as reagent]
-              [re-frame.core :as re-frame]
-              [pokedex.events]
-              [pokedex.subs]
-              [pokedex.views :as views]
-              [pokedex.config :as config]))
+  (:require [reagent.core :as reagent]
+            [re-frame.core :as re-frame]
+            [pokedex.events]
+            [pokedex.subs]
+            [pokedex.views :as views]
+            [pokedex.config :as config]))
 
 
 (defn dev-setup []
@@ -19,5 +19,6 @@
 
 (defn ^:export init []
   (re-frame/dispatch-sync [:initialize-db])
+  (re-frame/dispatch-sync [:get-pokemon])
   (dev-setup)
   (mount-root))
