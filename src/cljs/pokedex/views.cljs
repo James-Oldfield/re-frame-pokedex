@@ -17,14 +17,19 @@
 
 (defn matching-pokemon-item
   [{:keys [entry_number pokemon_species]}]
-  [:li (create-class #{"list-group-item"
-                       "justify-content-between"})
-   (:name pokemon_species)
-   [:span (create-class #{"badge"
-                          "badge-default"
-                          "text-white"
-                          "badge-pill"})]
-   (str "#" entry_number " ")])
+  (let [name (:name pokemon_species)
+        url (:url pokemon_species)]
+    [:a {:class (create-class #{"list-group-item"
+                                "list-group-item-action"
+                                "justify-content-between"} true)
+         :href "#"
+         :on-click #(dispatch [:get-pokemon url])}
+     [:span name]
+     [:span (create-class #{"badge"
+                            "badge-default"
+                            "text-white"
+                            "badge-pill"})
+      (str "#" entry_number " ")]]))
 
 
 (defn matching-pokemon-wrapper
