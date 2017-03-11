@@ -1,7 +1,8 @@
 (ns pokedex.events
   (:require [re-frame.core :as re-frame]
             [ajax.core :as ajax]
-            [day8.re-frame.http-fx]  
+            [day8.re-frame.http-fx]
+            [clojure.string :as s]
             [pokedex.db :as db]))
 
 ;; initialise the DB with default values
@@ -28,7 +29,7 @@
   (fn [{db :db} [_ url]]
     {:db (assoc db :pokedex-loading? true)
      :http-xhrio {:method :get
-                  :uri url
+                  :uri (s/replace url #"http" "https")
                   :timeout 8000
                   :response-format (ajax/json-response-format {:keywords? true})
                   :on-success [:handle-pokemon-success]
@@ -64,7 +65,7 @@
   (fn [{db :db} _]
     {:db (assoc db :pokedex-loading? true)
      :http-xhrio {:method :get
-                  :uri "http://pokeapi.co/api/v2/pokedex/2/"
+                  :uri "https://pokeapi.co/api/v2/pokedex/2/"
                   :timeout 8000
                   :response-format (ajax/json-response-format {:keywords? true})
                   :on-success [:handle-pokedex-success]
