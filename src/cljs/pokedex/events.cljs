@@ -29,7 +29,9 @@
   (fn [{db :db} [_ url]]
     {:db (assoc db :pokedex-loading? true)
      :http-xhrio {:method :get
-                  :uri (s/replace url #"http" "https")
+                  :uri (if (s/includes? url "https")
+                         url
+                         (s/replace url #"http" "https"))
                   :timeout 8000
                   :response-format (ajax/json-response-format {:keywords? true})
                   :on-success [:handle-pokemon-success]
